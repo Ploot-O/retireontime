@@ -145,15 +145,32 @@ export function RetireOnTimeComponent() {
 
   };
 
+  let numChecked = [is401kChecked, isIRAChecked, isMiscChecked].filter(Boolean).length;
+
+  let gridClass;
+  switch (numChecked) {
+    case 1:
+      gridClass = "sm:grid-cols-1";
+      break;
+    case 2:
+      gridClass = "sm:grid-cols-2";
+      break;
+    case 3:
+      gridClass = "sm:grid-cols-3";
+      break;
+    default:
+      gridClass = "";
+  }
+
   return (
     <div className="flex flex-col h-screen font-mono">
-      <nav className="flex items-center justify-between px-6 py-4 border-b">
-        <div className="flex flex-col">
+      <nav className="grid grid-cols-1 sm:grid-cols-2 items-center justify-center sm:justify-between px-2 py-2 border-b">
+        <div className="grid mx-1 justify-center sm:justify-start">
           <h1 className="font-bold text-xl text-blue-500">retireonti.me</h1>
         </div>
-        <div className="flex flex-col">
+        <div className="grid mx-1 justify-center sm:justify-end">
           <Link
-            className="text-sm text-blue-500 hover:text-red-500 dark:text-blue-400 dark:hover:text-red-400"
+            className="text-sm text-blue-500 hover:text-red-500"
             href="https://paulbro.cc" target="_blank">
             check out the developer
           </Link>
@@ -184,7 +201,7 @@ export function RetireOnTimeComponent() {
             <CardTitle>accounts</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <span>
                 <input type="checkbox" id="401k" value="401k" onChange={e => {
                   set401kChecked(e.target.checked);
@@ -207,7 +224,8 @@ export function RetireOnTimeComponent() {
                 <label htmlFor="misc">other account</label>
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-12">
+            <div className={`grid grid-cols-1 ${gridClass} gap-12`}>
+
               {is401kChecked && (
                 <div className="flex flex-col gap-4">
                   <h3 className="font-bold text-lg text-blue-500">401k</h3>
@@ -276,7 +294,7 @@ export function RetireOnTimeComponent() {
           <button className="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" onClick={e => calculateRetirement()}>Calculate Retirement</button>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card>
             <CardHeader>
               <CardTitle>retirement account total(s) when you begin passively generating preferred income</CardTitle>
