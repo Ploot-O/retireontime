@@ -1,10 +1,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import 'victormono';
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
 body {
   background-color: white;
   color: black;
-  font-family: 'Victor Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
