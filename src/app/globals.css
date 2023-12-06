@@ -16,3 +16,26 @@ body.dark {
   background-color: #121212;
   color: white;
 }
+
+/* CSS rule that applies to any child, grandchild, etc of body.dark with the class "lightdarkbtn" */
+body.dark .lightdarkbtn > * {
+  background-color: white;
+  color: #121212;
+}
+
+/* CSS rule that applies to any child, grandchild, etc of body.light with the class "lightdarkbtn" */
+body.light .lightdarkbtn > * {
+  background-color: #121212;
+  color: white;
+}
+
+/* CSS rule that applies to a class called "retro" that makes anything with that class styled like windows 95 including retro styled font */
+.retro {
+  background-color: #008080;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  font-family: 'Courier New', Courier, monospace;
+}

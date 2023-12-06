@@ -25,7 +25,7 @@ export function LightDarkButton() {
 
     return (
         <>
-            <button type='button' className='button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={toggleTheme}>Toggle Light/Dark Theme</button>
+            <button type='button' className='button font-bold py-2 px-4 rounded' onClick={toggleTheme}>Toggle Light/Dark Theme</button>
         </>
     );
 }

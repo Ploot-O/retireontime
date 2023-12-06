@@ -176,7 +176,7 @@ export function RetireOnTimeComponent() {
             check out the developer
           </Link>
         </div>
-        <div className="grid mx-1 justify-center sm:justify-end">
+        <div className="grid mx-1 justify-center sm:justify-end lightdarkbtn">
           <LightDarkButton />
         </div>
       </nav>
