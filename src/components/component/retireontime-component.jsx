@@ -7,6 +7,7 @@ import React, { useEffect } from "react"
 import Link from "next/link"
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { LightDarkButton } from "@/components/component/light-dark-toggle-component"
 
 export function RetireOnTimeComponent() {
   const [is401kChecked, set401kChecked] = React.useState(false);
@@ -164,16 +165,19 @@ export function RetireOnTimeComponent() {
 
   return (
     <div className="flex flex-col h-screen font-mono">
-      <nav className="grid grid-cols-1 sm:grid-cols-2 items-center justify-center sm:justify-between px-2 py-2 border-b">
+      <nav className="grid grid-cols-1 sm:grid-cols-3 items-center justify-center sm:justify-between px-2 py-2 border-b">
         <div className="grid mx-1 justify-center sm:justify-start">
           <h1 className="font-bold text-xl text-blue-500">retireonti.me</h1>
         </div>
-        <div className="grid mx-1 justify-center sm:justify-end">
+        <div className="grid mx-1 justify-center sm:justify-center">
           <Link
             className="text-sm text-blue-500 hover:text-red-500"
             href="https://paulbro.cc" target="_blank">
             check out the developer
           </Link>
+        </div>
+        <div className="grid mx-1 justify-center sm:justify-end">
+          <LightDarkButton />
         </div>
       </nav>
       <main className="flex flex-col flex-grow p-6 gap-6">

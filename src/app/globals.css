@@ -4,7 +4,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
 body {
-  background-color: white;
-  color: black;
   font-family: 'Outfit', sans-serif;
+}
+
+body.light {
+  background-color: white;
+  color: #121212;
+}
+
+body.dark {
+  background-color: #121212;
+  color: white;
 }
