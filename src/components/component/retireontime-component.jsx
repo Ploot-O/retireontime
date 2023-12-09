@@ -94,7 +94,7 @@ export function RetireOnTimeComponent() {
     for (let i = 0; i <= t; i++) {
       total += c * 26;
       total *= (1 + (r / 100));
-      if(i === t) {
+      if (i === t) {
         total -= c * 26;
       }
     }
@@ -339,14 +339,24 @@ export function RetireOnTimeComponent() {
           <CardContent className="flex flex-col gap-4">
             <label htmlFor="age">current age in years</label>
             <Input placeholder="current age in years" type="number" value={age} onChange={e => {
-              setAge(e.target.value);
-              calculateRetirement();
+              if (e.target.value >= 0 && e.target.value < 65) {
+                setAge(e.target.value);
+                calculateRetirement();
+              }
+              else {
+                alert("Please enter an age between 0 and 65 years.");
+              }
             }}
             />
             <label htmlFor="preferredIncome">preferred retirement income per year ($USD)</label>
             <Input placeholder="preferred retirement income per year ($USD)" type="number" value={preferredIncome} onChange={e => {
-              setPreferredIncome(e.target.value);
-              calculateRetirement();
+              if (e.target.value >= 0) {
+                setPreferredIncome(e.target.value);
+                calculateRetirement();
+              }
+              else {
+                alert("Please enter a preferred income greater than $0.");
+              }
             }} />
           </CardContent>
         </Card>
@@ -361,6 +371,7 @@ export function RetireOnTimeComponent() {
                 <input type="checkbox" id="401k" value="401k" onChange={e => {
                   set401kChecked(e.target.checked);
                   calculateRetirement();
+
                 }} />
                 <label htmlFor="401k">401k</label>
               </span>
@@ -386,18 +397,33 @@ export function RetireOnTimeComponent() {
                   <h3 className="font-bold text-lg text-blue-500">401k</h3>
                   <label htmlFor="contributions401k">total contribution per 2 weeks ($USD)</label>
                   <Input placeholder="total contribution per 2 weeks ($USD)" type="number" value={contributions401k} onChange={e => {
-                    set401kContributions(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      set401kContributions(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The 401k Contribution cannot be a negative number.");
+                    }
                   }} />
                   <label htmlFor="principal401k">total in account ($USD)</label>
                   <Input placeholder="total in account ($USD)" type="number" value={principal401k} onChange={e => {
-                    set401kPrincipal(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      set401kPrincipal(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The 401k Principal cannot be a negative number.");
+                    }
                   }} />
                   <label htmlFor="rate401k">expected growth per year (%)</label>
                   <Input placeholder="expected growth per year (%)" type="number" value={rate401k} onChange={e => {
-                    set401kRate(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      set401kRate(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The 401k Rate cannot be a negative number.");
+                    }
                   }} />
                 </div>
               )}
@@ -406,18 +432,33 @@ export function RetireOnTimeComponent() {
                   <h3 className="font-bold text-lg text-blue-500">IRA</h3>
                   <label htmlFor="contributionsIRA">total contribution per 2 weeks ($USD)</label>
                   <Input placeholder="total contribution per 2 weeks ($USD)" type="number" value={contributionsIRA} onChange={e => {
-                    setIRAContributions(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      setIRAContributions(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The IRA Contribution cannot be a negative number.");
+                    }
                   }} />
                   <label htmlFor="principalIRA">total in account ($USD)</label>
                   <Input placeholder="total in account ($USD)" type="number" value={principalIRA} onChange={e => {
-                    setIRAPrincipal(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      setIRAPrincipal(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The IRA Principal cannot be a negative number.");
+                    }
                   }} />
                   <label htmlFor="rateIRA">expected growth per year (%)</label>
                   <Input placeholder="expected growth per year (%)" type="number" value={rateIRA} onChange={e => {
-                    setIRARate(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      setIRARate(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The IRA Rate cannot be a negative number.");
+                    }
                   }} />
                 </div>
               )}
@@ -426,18 +467,33 @@ export function RetireOnTimeComponent() {
                   <h3 className="font-bold text-lg text-blue-500">other account</h3>
                   <label htmlFor="contributionsMisc">total contribution per 2 weeks ($USD)</label>
                   <Input placeholder="total contribution per 2 weeks ($USD)" type="number" value={contributionsMisc} onChange={e => {
-                    setMiscContributions(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      setMiscContributions(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The Misc Contribution cannot be a negative number.");
+                    }
                   }} />
                   <label htmlFor="principalMisc">total in account ($USD)</label>
                   <Input placeholder="total in account ($USD)" type="number" value={principalMisc} onChange={e => {
-                    setMiscPrincipal(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      setMiscPrincipal(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The Misc Principal cannot be a negative number.");
+                    }
                   }} />
                   <label htmlFor="rateMisc">expected growth per year (%)</label>
                   <Input placeholder="expected growth per year (%)" type="number" value={rateMisc} onChange={e => {
-                    setMiscRate(e.target.value);
-                    calculateRetirement();
+                    if (e.target.value >= 0) {
+                      setMiscRate(e.target.value);
+                      calculateRetirement();
+                    }
+                    else {
+                      alert("The Misc Rate cannot be a negative number.");
+                    }
                   }} />
                 </div>
               )}
@@ -483,7 +539,8 @@ export function RetireOnTimeComponent() {
                 <CardHeader>
                   <CardTitle>Supplemental anual income required to reach preferred income:</CardTitle>
                 </CardHeader>
-                <CardContent>${supplementalIncome}</CardContent>
+                <CardContent>Suepplemental income: ${supplementalIncome}</CardContent>
+                <CardContent>Interest generated per year at 65: ${totalIncomeAt65}</CardContent>
               </Card>
             )
           }
