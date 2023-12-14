@@ -17,9 +17,10 @@ import {
   LineElement,
   BarElement,
   Title,
-  Tooltip,
   Legend,
-} from 'chart.js'
+} from 'chart.js';
+import { Info } from "react-feather";
+import { Tooltip } from "./tooltip";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,7 +28,6 @@ ChartJS.register(
   LineElement,
   BarElement,
   Title,
-  Tooltip,
   Legend
 )
 
@@ -173,12 +173,37 @@ export function RetireOnTimeComponent() {
         }
       ]
     };
+
+    const options = {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Total Balance and Interest Earned Over Time',
+          fontSize: 20,
+        },
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Age (years)',
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Balance ($USD)',
+          },
+        },
+      },
+    };
+
     return (
-      <Line data={data} />
+      <Line data={data} options={options} />
     );
   };
 
-  const buildStackedChart = (years, balances, interest, contributions) => {
+  const buildStackedChart = (years, interest, contributions) => {
     const data = {
       labels: years,
       datasets: [
@@ -196,12 +221,27 @@ export function RetireOnTimeComponent() {
     };
 
     const options = {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Contributions Invested and Interest Earned Over Time',
+          fontSize: 20,
+        },
+      },
       scales: {
         x: {
           stacked: true,
+          title: {
+            display: true,
+            text: 'Age (years)',
+          },
         },
         y: {
           stacked: true,
+          title: {
+            display: true,
+            text: 'Balance Breakdown ($USD)',
+          },
         },
       },
     };
@@ -337,7 +377,10 @@ export function RetireOnTimeComponent() {
             <CardTitle className="italic">Information</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <label htmlFor="age">current age in years</label>
+            <Tooltip text={"Enter your current age in years"}>
+              <label htmlFor="age">current age in years</label>
+              <Info className="cursor-help ml-2" />
+            </Tooltip>
             <Input placeholder="current age in years" type="number" value={age} onChange={e => {
               if (e.target.value >= 0 && e.target.value < 65) {
                 setAge(e.target.value);
@@ -348,7 +391,10 @@ export function RetireOnTimeComponent() {
               }
             }}
             />
-            <label htmlFor="preferredIncome">preferred retirement income per year ($USD)</label>
+            <Tooltip text={"Enter your preferred income per year after retirement in USD"}>
+              <label htmlFor="preferredIncome">preferred retirement income per year ($USD)</label>
+              <Info className="cursor-help ml-2" />
+            </Tooltip>
             <Input placeholder="preferred retirement income per year ($USD)" type="number" value={preferredIncome} onChange={e => {
               if (e.target.value >= 0) {
                 setPreferredIncome(e.target.value);
@@ -537,9 +583,9 @@ export function RetireOnTimeComponent() {
             ) : (
               <Card>
                 <CardHeader>
-                  <CardTitle>Supplemental anual income required to reach preferred income:</CardTitle>
+                  <CardTitle>Supplemental annual income required to reach preferred income:</CardTitle>
                 </CardHeader>
-                <CardContent>Suepplemental income: ${supplementalIncome}</CardContent>
+                <CardContent>Supplemental income: ${supplementalIncome}</CardContent>
                 <CardContent>Interest generated per year at 65: ${totalIncomeAt65}</CardContent>
               </Card>
             )
@@ -550,7 +596,7 @@ export function RetireOnTimeComponent() {
           {buildChart(years, balances, interest)}
         </div>
         <div className="grid grid-cols-1 gap-4">
-          {buildStackedChart(years, balances, interest, contributed)}
+          {buildStackedChart(years, interest, contributed)}
         </div>
       </main>
       <footer className="flex items-center justify-center h-16 border-t px-6">

@@ -48,3 +48,23 @@ body.light .lightdarkbtn>* {
   background-color: #121212;
   color: white;
 }
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  position: absolute;
+  top: calc(-100% - 50px);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 1;
+  background-color: #121212;
+  color: white;
+}
+
+body.dark .tooltip-text {
+  background-color: white;
+  color: #121212;
+}
