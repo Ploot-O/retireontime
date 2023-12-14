@@ -20,7 +20,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Info } from "react-feather";
-import { Tooltip } from "./tooltip";
+import { Tooltip } from "./Tooltip";
 ChartJS.register(
   CategoryScale,
   LinearScale,
